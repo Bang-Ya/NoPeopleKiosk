@@ -14,7 +14,7 @@ window.rowconfigure(0,weight=1)
 window.columnconfigure(0,weight=1)
 
 #프레임 기본틀생성
-testbtn=Button
+
 frame1=tk.Frame(window)
 frame2=tk.Frame(window)
 frame3=tk.Frame(window)
