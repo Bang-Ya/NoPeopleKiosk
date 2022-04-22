@@ -244,6 +244,8 @@ def onClicknum(txt):
         # 여기버튼 아직 해결못함. if문 반복해야하나?
         if len(juminent2.get()) >= 7:
             juminent2.delete(6,END)
+
+
         elif len(juminent2.get()) == 6:
             juminent2.delete(5, END)
         elif len(juminent2.get()) == 5:
@@ -276,6 +278,7 @@ def onClicknum(txt):
            #juminent2의 길이가 6이하면 버튼 사라지게 처리하자..
             if len(juminent2.get()) > 6:
                 goframbtn(botokbtn, frame3, bot_btn_ok, frame4, 880, 1285)
+
         else:
             juminent.insert(END, txt)
 
