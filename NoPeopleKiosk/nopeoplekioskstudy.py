@@ -1,6 +1,8 @@
 from tkinter import *
 import tkinter as tk
+from playsound import playsound
 import threading
+
 
 # show frame
 def show_frame(frame):
@@ -56,7 +58,6 @@ for frame in (frame1,frame2,frame3,frame4,frame5,frame6,frame7,frame8,frame9,fra
 
 #최초 기본 프레임 호출
 show_frame(frame1)
-
 
 #wall
 
@@ -136,6 +137,7 @@ sub17_btn_cash=PhotoImage(file="img/sub17_btn_cash.png")
 sub18_btn_card=PhotoImage(file="img/sub18_btn_card.png")
 
 
+
 #버튼  선언 이미지의 파일명과 매칭을 위해 이름순서를 바꿔 조합하였음.
 juminbtn=Button
 landbtn=Button
@@ -179,6 +181,8 @@ subokbtn=Button
 count=0
 price=10
 
+#sound 사용여부
+soundtf=True
 #juminnumtest
 
 jumininput=Label
@@ -189,6 +193,8 @@ jumininput=Label
 #juminent=Entry
 #juminent2=Entry
 #코드 줄이려고 테스트중
+
+
 def placset2(name):
     return name.place
 
@@ -217,7 +223,6 @@ def a_function(time):
 def b_function():
     show_frame(frame7)
 
-
 #================================================================================================================
 
 
@@ -244,8 +249,6 @@ def onClicknum(txt):
         # 여기버튼 아직 해결못함. if문 반복해야하나?
         if len(juminent2.get()) >= 7:
             juminent2.delete(6,END)
-
-
         elif len(juminent2.get()) == 6:
             juminent2.delete(5, END)
         elif len(juminent2.get()) == 5:
@@ -278,6 +281,7 @@ def onClicknum(txt):
            #juminent2의 길이가 6이하면 버튼 사라지게 처리하자..
             if len(juminent2.get()) > 6:
                 goframbtn(botokbtn, frame3, bot_btn_ok, frame4, 880, 1285)
+               # juminent.delete(0, END), juminent2.delete(0, END)
 
         else:
             juminent.insert(END, txt)
@@ -309,7 +313,6 @@ def onClicknumframe16(txt):
     if len(balgeub.get()) > 1:
         balgeub.delete(0, END)
         balgeub.insert(END, txt)
-
     if txt=="1":
         count=insertcount(1)
     elif txt=="2":
@@ -335,6 +338,8 @@ def onclicknumbtn2(btnname,nowframe,imgname,text,xplace,yplace):
     btnname.place(x=xplace, y=yplace)
 
 #=============== frame16 다이얼처리 END ====================================
+
+
 
 #===============  Jump to frame 17 ====================================
 def a_function2(time):
@@ -396,7 +401,59 @@ def b_function3():
 def c_function3():
     show_frame(frame23)
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#프레임 이동 ---> 오디오 플레이를 위한 함수 최적화 생성중....
+
+#선 프레임 이동 후 오디오 재생
+def frameaudio():
+    show_frame(frame3)
+    threading.Timer(0.3, frameaudio2).start()
+
+# 후 오디오 플레이 작업 soundplaytest 에서 mp3형식으로 박아두었음. 파일명만 입력하면 됌.
+def frameaudio2():
+    soundplaytest("02.등본_01")
+
+def soundplaytest(filename):
+    if soundtf == True:
+        playsound('D:\\pythonkshProject\\audio\\'+filename+'.mp3')
+
+
+
+
+
+
+
+
+
+
 #함수 끝=========함수 끝=========함수 끝=========함수 끝=========함수 끝=========
+
+
+
+
+
+
+
+
+
+
+
+
 
 #프레임 찍어내기 시작
 #찍어내기 시작 1~5 는 각구역에 최상단에 삽입되어있음
@@ -432,11 +489,14 @@ goframbtn(comprevbtn,frame1,btn_prev,frame23,30,30)
 goframbtn(comhomebtn,frame1,btn_home,frame1,950,30)
 
 
+
 #=======frame2===========frame2=========frame2==========frame2==========
 #frame2 background
 setbackgroun(frame2,consub1)
 #frame2_btn etc...
-goframbtn(certbtn,frame2,btn_cert,frame3,390,860)
+#goframbtn(certbtn,frame2,btn_cert,frame3,390,860)
+certbtn = Button(frame2, image=btn_cert, relief="flat", command=lambda: frameaudio())
+certbtn.place(x=390, y=860)
 #goframbtn(abstbtn,frame2,btn_abst,frame3,390,1060) 초본 배경에 포함되어있으로 주석처리
 goframbtn(comprevbtn,frame2,btn_prev,frame1,30,30)
 goframbtn(comhomebtn,frame2,btn_home,frame1,950,30)
@@ -538,6 +598,8 @@ goframbtn(botokbtn,frame20,bot_btn_ok,frame1,880,1285)
 
 #===========frame7============================================
 
+soundplaytest("test")
+
 goframbtn(comprevbtn,frame7,btn_prev,frame3,30,30)
 goframbtn(comhomebtn,frame7,btn_home,frame1,950,30)
 #goframbtn(botokbtn,frame7,bot_btn_ok,frame15,880,1285)
@@ -614,7 +676,6 @@ goframbtn(botokbtn,frame12,bot_btn_ok,frame15,880,1285)
 
 
 """
-
 goframbtn(selcourtbtn,frame12,sel_btn_court,frame8,29,770)
 goframbtn(seledubtn,frame12,sel_btn_edu,frame9,29,865)
 goframbtn(selpublicbtn,frame12,sel_brn_public,frame10,29,960)
