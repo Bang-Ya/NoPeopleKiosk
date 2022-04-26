@@ -2,6 +2,8 @@ from tkinter import *
 import tkinter as tk
 from playsound import playsound
 import threading
+from imtest import btnderation as im
+
 
 
 # show frame
@@ -139,41 +141,8 @@ sub18_btn_card=PhotoImage(file="img/sub18_btn_card.png")
 
 
 #버튼  선언 이미지의 파일명과 매칭을 위해 이름순서를 바꿔 조합하였음.
-juminbtn=Button
-landbtn=Button
-comprevbtn=Button
-certbtn=Button
-comhomebtn=Button
-bothomebtn=Button
-botprevbtn=Button
-botokbtn=Button
-#set dial button Name 다이얼 버튼
-dialzero=Button
-#하단에 하드 코딩 해뒀음  dialone=Button
-dialtwo=Button
-dialthree=Button
-dialfour=Button
-dialfive=Button
-dialsix=Button
-dialseven=Button
-dialeight=Button
-dialnine=Button
-dialdel=Button
-dialmod=Button
-# consub7~
-selpublicbtn=Button
-selallbtn=Button
-selcourtbtn=Button
-seledubtn=Button
-selhostbtn=Button
-sellandbtn=Button
-selnonebtn=Button
-sub14ok1btn=Button
-sub14ok2btn=Button
-sub17cardbtn=Button
-sub17cashbtn=Button
-sub18cardbtn=Button
-subokbtn=Button
+
+
 
 
 
@@ -208,19 +177,21 @@ def setbackgroun(framenum, imagenm):
     bot_label.place(x=-2, y=1457)
 
 
+
 #=====================================================================================
+
 # 프레임5에서 3초후 자동 프레임 전환을 하기 위함.
 # genesis_function을 바로 사용하면 4-->5에도 동일한 타임의 딜레이가 발생하므로 패스하고
 # 바로 a_function으로 사용하였음. 추후 비슷한 기능을 구현하기 위해 남겨둠.
 
 def genesis_function(time):
-    threading.Timer(time, a_function, [time]).start()
+    threading.Timer(time, function_a, [time]).start()
 
-def a_function(time):
+def function_a(time):
     show_frame(frame5)
-    threading.Timer(time, b_function).start()
+    threading.Timer(time, function_b).start()
 
-def b_function():
+def function_b():
     show_frame(frame7)
 
 #================================================================================================================
@@ -430,7 +401,7 @@ def frameaudio2():
 
 def soundplaytest(filename):
     if soundtf == True:
-        playsound('D:\\pythonkshProject\\audio\\'+filename+'.mp3')
+        playsound("D:\\pythonkshProject\\audio\\"+filename+".mp3")
 
 
 
@@ -483,10 +454,10 @@ setbackgroun(frame24,consub23)
 #frame1 background
 setbackgroun(frame1,wall)
 #frame1_btn etc...
-goframbtn(juminbtn,frame1,btn_jumin,frame2,80,760)
-goframbtn(landbtn,frame1,btn_land,frame2,310,760)
-goframbtn(comprevbtn,frame1,btn_prev,frame23,30,30)
-goframbtn(comhomebtn,frame1,btn_home,frame1,950,30)
+goframbtn(im.juminbtn,frame1,btn_jumin,frame2,80,760)
+#goframbtn(landbtn,frame1,btn_land,frame2,310,760)
+goframbtn(im.comprevbtn,frame1,btn_prev,frame23,30,30)
+goframbtn(im.comhomebtn,frame1,btn_home,frame1,950,30)
 
 
 
@@ -498,20 +469,20 @@ setbackgroun(frame2,consub1)
 certbtn = Button(frame2, image=btn_cert, relief="flat", command=lambda: frameaudio())
 certbtn.place(x=390, y=860)
 #goframbtn(abstbtn,frame2,btn_abst,frame3,390,1060) 초본 배경에 포함되어있으로 주석처리
-goframbtn(comprevbtn,frame2,btn_prev,frame1,30,30)
-goframbtn(comhomebtn,frame2,btn_home,frame1,950,30)
-goframbtn(bothomebtn,frame2,bot_btn_home,frame1,75,1288)
-goframbtn(botprevbtn,frame2,bot_btn_prev,frame1,201,1288)
+goframbtn(im.comprevbtn,frame2,btn_prev,frame1,30,30)
+goframbtn(im.comhomebtn,frame2,btn_home,frame1,950,30)
+goframbtn(im.bothomebtn,frame2,bot_btn_home,frame1,75,1288)
+goframbtn(im.botprevbtn,frame2,bot_btn_prev,frame1,201,1288)
 
 
 #=======frame3============frame3==============frame3==============frame3========
 #frame3 background
 setbackgroun(frame3,consub2)
 #frame3_btn etc...
-goframbtn(comprevbtn,frame3,btn_prev,frame2,30,30)
-goframbtn(comhomebtn,frame3,btn_home,frame1,950,30)
-goframbtn(bothomebtn,frame3,bot_btn_home,frame1,75,1288)
-goframbtn(botprevbtn,frame3,bot_btn_prev,frame2,201,1288)
+goframbtn(im.comprevbtn,frame3,btn_prev,frame2,30,30)
+goframbtn(im.comhomebtn,frame3,btn_home,frame1,950,30)
+goframbtn(im.bothomebtn,frame3,bot_btn_home,frame1,75,1288)
+goframbtn(im.botprevbtn,frame3,bot_btn_prev,frame2,201,1288)
 # 주민번호 1,2 사이에 하이푼
 getlabel(jumininput,frame3,502,800)
 
@@ -527,17 +498,17 @@ juminent2.place(x=550,y=800)
 #onclicknumbtn 함수를 통해 값을 숫자값을 텍스트형태로 전달하여 후가공함.  추후 해당 함수 찾아 스코를을 줄이기 위해 1번버튼만 하드코딩해둠.
 dialone = Button(frame3, image=dial_1, relief="flat", command=lambda: onClicknum(1))
 dialone.place(x=590, y=890)
-onclicknumbtn(dialtwo,frame3,dial_2,str(2),715,890)
-onclicknumbtn(dialthree,frame3,dial_3,str(3),845,890)
-onclicknumbtn(dialfour,frame3,dial_4,str(4),590,983)
-onclicknumbtn(dialfive,frame3,dial_5,str(5),715,983)
-onclicknumbtn(dialsix,frame3,dial_6,str(6),845,983)
-onclicknumbtn(dialseven,frame3,dial_7,str(7),590,1073)
-onclicknumbtn(dialeight,frame3,dial_8,str(8),715,1073)
-onclicknumbtn(dialnine,frame3,dial_9,str(9),845,1073)
-onclicknumbtn(dialzero,frame3,dial_0,str(0),715,1163)
-onclicknumbtn(dialmod,frame3,dial_mod,str("mod"),845,1163)
-onclicknumbtn(dialdel,frame3,dial_del,str("del"),590,1163)
+onclicknumbtn(im.dialtwo,frame3,dial_2,str(2),715,890)
+onclicknumbtn(im.dialthree,frame3,dial_3,str(3),845,890)
+onclicknumbtn(im.dialfour,frame3,dial_4,str(4),590,983)
+onclicknumbtn(im.dialfive,frame3,dial_5,str(5),715,983)
+onclicknumbtn(im.dialsix,frame3,dial_6,str(6),845,983)
+onclicknumbtn(im.dialseven,frame3,dial_7,str(7),590,1073)
+onclicknumbtn(im.dialeight,frame3,dial_8,str(8),715,1073)
+onclicknumbtn(im.dialnine,frame3,dial_9,str(9),845,1073)
+onclicknumbtn(im.dialzero,frame3,dial_0,str(0),715,1163)
+onclicknumbtn(im.dialmod,frame3,dial_mod,str("mod"),845,1163)
+onclicknumbtn(im.dialdel,frame3,dial_del,str("del"),590,1163)
 
 #상단 임시 프레임 이동버튼 추후 삭제
 frame3_title = tk.Label(frame3, text="This is frame 3", bg='blue')
@@ -551,14 +522,14 @@ frame3_btn.pack()
 #frame4 background
 setbackgroun(frame4,consub3)
 #frame4_btn etc...
-goframbtn(comprevbtn,frame4,btn_prev,frame3,30,30)
-goframbtn(comhomebtn,frame4,btn_home,frame1,950,30)
-goframbtn(bothomebtn,frame4,bot_btn_home,frame1,75,1288)
-goframbtn(botprevbtn,frame4,bot_btn_prev,frame3,201,1288)
+goframbtn(im.comprevbtn,frame4,btn_prev,frame3,30,30)
+goframbtn(im.comhomebtn,frame4,btn_home,frame1,950,30)
+goframbtn(im.bothomebtn,frame4,bot_btn_home,frame1,75,1288)
+goframbtn(im.botprevbtn,frame4,bot_btn_prev,frame3,201,1288)
 
 frame4_title = tk.Label(frame4, text="This is frame 4", bg='green')
 frame4_title.pack(fill='x')
-frame4_btn = tk.Button(frame4, text='enter', command=lambda: a_function(3)) #show_frame(frame5))
+frame4_btn = tk.Button(frame4, text='enter', command=lambda: function_a(3)) #show_frame(frame5))
 frame4_btn.pack()
 
 
@@ -567,8 +538,8 @@ frame4_btn.pack()
 setbackgroun(frame5,consub4)
 
 #frame5_btn etc...
-goframbtn(comprevbtn,frame5,btn_prev,frame4,30,30)
-goframbtn(comhomebtn,frame5,btn_home,frame1,950,30)
+goframbtn(im.comprevbtn,frame5,btn_prev,frame4,30,30)
+goframbtn(im.comhomebtn,frame5,btn_home,frame1,950,30)
 
 #상단 임시 프레임 이동버튼 추후 삭제
 frame5_title = tk.Label(frame5, text="This is frame 5", bg='green')
@@ -579,7 +550,7 @@ frame5_btn.pack()
 
 
 #프레임별 버튼 박아두기.
-goframbtn(botokbtn,frame6,bot_btn_ok,frame7,880,1285)
+goframbtn(im.botokbtn,frame6,bot_btn_ok,frame7,880,1285)
 """
 goframbtn(botokbtn,frame8,bot_btn_ok,frame9,880,1285)
 goframbtn(botokbtn,frame9,bot_btn_ok,frame10,880,1285)
@@ -598,81 +569,81 @@ goframbtn(botokbtn,frame20,bot_btn_ok,frame1,880,1285)
 
 #===========frame7============================================
 
-soundplaytest("test")
 
-goframbtn(comprevbtn,frame7,btn_prev,frame3,30,30)
-goframbtn(comhomebtn,frame7,btn_home,frame1,950,30)
+
+goframbtn(im.comprevbtn,frame7,btn_prev,frame3,30,30)
+goframbtn(im.comhomebtn,frame7,btn_home,frame1,950,30)
 #goframbtn(botokbtn,frame7,bot_btn_ok,frame15,880,1285)
-goframbtn(selcourtbtn,frame7,sel_btn_court,frame8,29,770)
-goframbtn(seledubtn,frame7,sel_btn_edu,frame9,29,865)
-goframbtn(selpublicbtn,frame7,sel_brn_public,frame10,29,960)
-goframbtn(sellandbtn,frame7,sel_btn_land,frame11,29,1055)
-goframbtn(selhostbtn,frame7,sel_btn_host,frame12,29,1150)
-goframbtn(selallbtn,frame7,sel_btn_all,frame11_1,700,715)
-goframbtn(selnonebtn,frame7,sel_btn_none,frame11_2,880,715)
-goframbtn(bothomebtn,frame7,bot_btn_home,frame1,75,1288)
-goframbtn(botprevbtn,frame7,bot_btn_prev,frame4,201,1288)
+goframbtn(im.selcourtbtn,frame7,sel_btn_court,frame8,29,770)
+goframbtn(im.seledubtn,frame7,sel_btn_edu,frame9,29,865)
+goframbtn(im.selpublicbtn,frame7,sel_brn_public,frame10,29,960)
+goframbtn(im.sellandbtn,frame7,sel_btn_land,frame11,29,1055)
+goframbtn(im.selhostbtn,frame7,sel_btn_host,frame12,29,1150)
+goframbtn(im.selallbtn,frame7,sel_btn_all,frame11_1,700,715)
+goframbtn(im.selnonebtn,frame7,sel_btn_none,frame11_2,880,715)
+goframbtn(im.bothomebtn,frame7,bot_btn_home,frame1,75,1288)
+goframbtn(im.botprevbtn,frame7,bot_btn_prev,frame4,201,1288)
 
 
 #===========frame8============================================
 
-goframbtn(comprevbtn,frame8,btn_prev,frame7,30,30)
-goframbtn(comhomebtn,frame8,btn_home,frame1,950,30)
-goframbtn(botokbtn,frame8,bot_btn_ok,frame15,880,1285)
+goframbtn(im.comprevbtn,frame8,btn_prev,frame7,30,30)
+goframbtn(im.comhomebtn,frame8,btn_home,frame1,950,30)
+goframbtn(im.botokbtn,frame8,bot_btn_ok,frame15,880,1285)
 #goframbtn(selcourtbtn,frame8,sel_btn_court,frame8,29,770)
-goframbtn(seledubtn,frame8,sel_btn_edu,frame9,29,865)
-goframbtn(selpublicbtn,frame8,sel_brn_public,frame10,29,960)
-goframbtn(sellandbtn,frame8,sel_btn_land,frame11,29,1055)
-goframbtn(selhostbtn,frame8,sel_btn_host,frame12,29,1150)
-goframbtn(selallbtn,frame8,sel_btn_all,frame11_1,700,715)
-goframbtn(selnonebtn,frame8,sel_btn_none,frame11_2,880,715)
-goframbtn(bothomebtn,frame8,bot_btn_home,frame1,75,1288)
+goframbtn(im.seledubtn,frame8,sel_btn_edu,frame9,29,865)
+goframbtn(im.selpublicbtn,frame8,sel_brn_public,frame10,29,960)
+goframbtn(im.sellandbtn,frame8,sel_btn_land,frame11,29,1055)
+goframbtn(im.selhostbtn,frame8,sel_btn_host,frame12,29,1150)
+goframbtn(im.selallbtn,frame8,sel_btn_all,frame11_1,700,715)
+goframbtn(im.selnonebtn,frame8,sel_btn_none,frame11_2,880,715)
+goframbtn(im.bothomebtn,frame8,bot_btn_home,frame1,75,1288)
 
 #===========frame9============================================
 
-goframbtn(comprevbtn,frame9,btn_prev,frame7,30,30)
-goframbtn(comhomebtn,frame9,btn_home,frame1,950,30)
-goframbtn(botokbtn,frame9,bot_btn_ok,frame15,880,1285)
-goframbtn(selcourtbtn,frame9,sel_btn_court,frame8,29,770)
+goframbtn(im.comprevbtn,frame9,btn_prev,frame7,30,30)
+goframbtn(im.comhomebtn,frame9,btn_home,frame1,950,30)
+goframbtn(im.botokbtn,frame9,bot_btn_ok,frame15,880,1285)
+goframbtn(im.selcourtbtn,frame9,sel_btn_court,frame8,29,770)
 #goframbtn(seledubtn,frame9,sel_btn_edu,frame9,29,865)
-goframbtn(selpublicbtn,frame9,sel_brn_public,frame10,29,960)
-goframbtn(sellandbtn,frame9,sel_btn_land,frame11,29,1055)
-goframbtn(selhostbtn,frame9,sel_btn_host,frame12,29,1150)
-goframbtn(selallbtn,frame9,sel_btn_all,frame11_1,700,715)
-goframbtn(selnonebtn,frame9,sel_btn_none,frame11_2,880,715)
-goframbtn(bothomebtn,frame9,bot_btn_home,frame1,75,1288)
+goframbtn(im.selpublicbtn,frame9,sel_brn_public,frame10,29,960)
+goframbtn(im.sellandbtn,frame9,sel_btn_land,frame11,29,1055)
+goframbtn(im.selhostbtn,frame9,sel_btn_host,frame12,29,1150)
+goframbtn(im.selallbtn,frame9,sel_btn_all,frame11_1,700,715)
+goframbtn(im.selnonebtn,frame9,sel_btn_none,frame11_2,880,715)
+goframbtn(im.bothomebtn,frame9,bot_btn_home,frame1,75,1288)
 
 #===========frame10============================================
 
-goframbtn(comprevbtn,frame10,btn_prev,frame7,30,30)
-goframbtn(comhomebtn,frame10,btn_home,frame1,950,30)
-goframbtn(botokbtn,frame10,bot_btn_ok,frame15,880,1285)
-goframbtn(selcourtbtn,frame10,sel_btn_court,frame8,29,770)
-goframbtn(seledubtn,frame10,sel_btn_edu,frame9,29,865)
+goframbtn(im.comprevbtn,frame10,btn_prev,frame7,30,30)
+goframbtn(im.comhomebtn,frame10,btn_home,frame1,950,30)
+goframbtn(im.botokbtn,frame10,bot_btn_ok,frame15,880,1285)
+goframbtn(im.selcourtbtn,frame10,sel_btn_court,frame8,29,770)
+goframbtn(im.seledubtn,frame10,sel_btn_edu,frame9,29,865)
 #goframbtn(selpublicbtn,frame10,sel_brn_public,frame10,29,960)
-goframbtn(sellandbtn,frame10,sel_btn_land,frame11,29,1055)
-goframbtn(selhostbtn,frame10,sel_btn_host,frame12,29,1150)
-goframbtn(selallbtn,frame10,sel_btn_all,frame11_1,700,715)
-goframbtn(selnonebtn,frame10,sel_btn_none,frame11_2,880,715)
-goframbtn(bothomebtn,frame10,bot_btn_home,frame1,75,1288)
+goframbtn(im.sellandbtn,frame10,sel_btn_land,frame11,29,1055)
+goframbtn(im.selhostbtn,frame10,sel_btn_host,frame12,29,1150)
+goframbtn(im.selallbtn,frame10,sel_btn_all,frame11_1,700,715)
+goframbtn(im.selnonebtn,frame10,sel_btn_none,frame11_2,880,715)
+goframbtn(im.bothomebtn,frame10,bot_btn_home,frame1,75,1288)
 
 
 #===========frame11============================================
 
-goframbtn(comprevbtn,frame11,btn_prev,frame7,30,30)
-goframbtn(comhomebtn,frame11,btn_home,frame1,950,30)
-goframbtn(botokbtn,frame11,bot_btn_ok,frame15,880,1285)
-goframbtn(selcourtbtn,frame11,sel_btn_court,frame8,29,770)
-goframbtn(seledubtn,frame11,sel_btn_edu,frame9,29,865)
-goframbtn(selpublicbtn,frame11,sel_brn_public,frame10,29,960)
+goframbtn(im.comprevbtn,frame11,btn_prev,frame7,30,30)
+goframbtn(im.comhomebtn,frame11,btn_home,frame1,950,30)
+goframbtn(im.botokbtn,frame11,bot_btn_ok,frame15,880,1285)
+goframbtn(im.selcourtbtn,frame11,sel_btn_court,frame8,29,770)
+goframbtn(im.seledubtn,frame11,sel_btn_edu,frame9,29,865)
+goframbtn(im.selpublicbtn,frame11,sel_brn_public,frame10,29,960)
 #goframbtn(sellandbtn,frame11,sel_btn_land,frame11,29,1055)
-goframbtn(selhostbtn,frame11,sel_btn_host,frame12,29,1150)
-goframbtn(selallbtn,frame11,sel_btn_all,frame11_1,700,715)
-goframbtn(selnonebtn,frame11,sel_btn_none,frame11_2,880,715)
-goframbtn(bothomebtn,frame11,bot_btn_home,frame1,75,1288)
+goframbtn(im.selhostbtn,frame11,sel_btn_host,frame12,29,1150)
+goframbtn(im.selallbtn,frame11,sel_btn_all,frame11_1,700,715)
+goframbtn(im.selnonebtn,frame11,sel_btn_none,frame11_2,880,715)
+goframbtn(im.bothomebtn,frame11,bot_btn_home,frame1,75,1288)
 
 #===========frame12============================================
-goframbtn(botokbtn,frame12,bot_btn_ok,frame15,880,1285)
+goframbtn(im.botokbtn,frame12,bot_btn_ok,frame15,880,1285)
 
 
 """
@@ -686,26 +657,26 @@ goframbtn(selnonebtn,frame12,sel_btn_none,frame11_2,880,715)
 """
 #===========frame11_1============================================
 
-goframbtn(botokbtn,frame11_1,bot_btn_ok,frame15,880,1285)
-goframbtn(selcourtbtn,frame11_1,sel_btn_court,frame8,29,770)
-goframbtn(seledubtn,frame11_1,sel_btn_edu,frame9,29,865)
-goframbtn(selpublicbtn,frame11_1,sel_brn_public,frame10,29,960)
-goframbtn(sellandbtn,frame11_1,sel_btn_land,frame11,29,1055)
-goframbtn(selhostbtn,frame11_1,sel_btn_host,frame12,29,1150)
+goframbtn(im.botokbtn,frame11_1,bot_btn_ok,frame15,880,1285)
+goframbtn(im.selcourtbtn,frame11_1,sel_btn_court,frame8,29,770)
+goframbtn(im.seledubtn,frame11_1,sel_btn_edu,frame9,29,865)
+goframbtn(im.selpublicbtn,frame11_1,sel_brn_public,frame10,29,960)
+goframbtn(im.sellandbtn,frame11_1,sel_btn_land,frame11,29,1055)
+goframbtn(im.selhostbtn,frame11_1,sel_btn_host,frame12,29,1150)
 #goframbtn(selallbtn,frame11_1,sel_btn_all,frame11_1,700,715)
-goframbtn(selnonebtn,frame11_1,sel_btn_none,frame11_2,880,715)
-goframbtn(bothomebtn,frame11_1,bot_btn_home,frame1,75,1288)
+goframbtn(im.selnonebtn,frame11_1,sel_btn_none,frame11_2,880,715)
+goframbtn(im.bothomebtn,frame11_1,bot_btn_home,frame1,75,1288)
 
 #===========frame11_2============================================
 
-goframbtn(botokbtn,frame11_2,bot_btn_ok,frame15,880,1285)
-goframbtn(selcourtbtn,frame11_2,sel_btn_court,frame8,29,770)
-goframbtn(seledubtn,frame11_2,sel_btn_edu,frame9,29,865)
-goframbtn(selpublicbtn,frame11_2,sel_brn_public,frame10,29,960)
-goframbtn(sellandbtn,frame11_2,sel_btn_land,frame11,29,1055)
-goframbtn(selhostbtn,frame11_2,sel_btn_host,frame12,29,1150)
-goframbtn(selallbtn,frame11_2,sel_btn_all,frame11_1,700,715)
-goframbtn(bothomebtn,frame11_2,bot_btn_home,frame1,75,1288)
+goframbtn(im.botokbtn,frame11_2,bot_btn_ok,frame15,880,1285)
+goframbtn(im.selcourtbtn,frame11_2,sel_btn_court,frame8,29,770)
+goframbtn(im.seledubtn,frame11_2,sel_btn_edu,frame9,29,865)
+goframbtn(im.selpublicbtn,frame11_2,sel_brn_public,frame10,29,960)
+goframbtn(im.sellandbtn,frame11_2,sel_btn_land,frame11,29,1055)
+goframbtn(im.selhostbtn,frame11_2,sel_btn_host,frame12,29,1150)
+goframbtn(im.selallbtn,frame11_2,sel_btn_all,frame11_1,700,715)
+goframbtn(im.bothomebtn,frame11_2,bot_btn_home,frame1,75,1288)
 
 
 #goframbtn(selnonebtn,frame11_2,sel_btn_none,frame11_2,880,715)
@@ -713,11 +684,11 @@ goframbtn(bothomebtn,frame11_2,bot_btn_home,frame1,75,1288)
 
 
 #=================frame15=================
-goframbtn(botokbtn,frame15,bot_btn_ok,frame16,880,1285)
+goframbtn(im.botokbtn,frame15,bot_btn_ok,frame16,880,1285)
 #goframbtn(sub14ok1btn,frame15,sub14_btn_ok1,frame16,100,1085)
 #goframbtn(sub14ok2btn,frame15,sub14_btn_ok2,frame16,570,1085)
-goframbtn(bothomebtn,frame15,bot_btn_home,frame1,75,1288)
-goframbtn(botprevbtn,frame15,bot_btn_prev,frame11_2,201,1288)
+goframbtn(im.bothomebtn,frame15,bot_btn_home,frame1,75,1288)
+goframbtn(im.botprevbtn,frame15,bot_btn_prev,frame11_2,201,1288)
 
 paymoney = Button(frame15, image=sub14_btn_ok1, relief="flat", command=lambda: [show_frame(frame16),onclickpayfree() ])
 paymoney.place(x=100, y=1085)
@@ -733,17 +704,17 @@ balgeub.place(x=300,y=903)
 #dial
 
 onclicknumbtn2(dialone,frame16,dial_1,str(1),580,880)
-onclicknumbtn2(dialtwo,frame16,dial_2,str(2),707,880)
-onclicknumbtn2(dialthree,frame16,dial_3,str(3),835,880)
-onclicknumbtn2(dialfour,frame16,dial_4,str(4),580,971)
-onclicknumbtn2(dialfive,frame16,dial_5,str(5),707,971)
-onclicknumbtn2(dialsix,frame16,dial_6,str(6),835,971)
-onclicknumbtn2(dialseven,frame16,dial_7,str(7),580,1063)
-onclicknumbtn2(dialeight,frame16,dial_8,str(8),707,1063)
-onclicknumbtn2(dialnine,frame16,dial_9,str(9),835,1063)
+onclicknumbtn2(im.dialtwo,frame16,dial_2,str(2),707,880)
+onclicknumbtn2(im.dialthree,frame16,dial_3,str(3),835,880)
+onclicknumbtn2(im.dialfour,frame16,dial_4,str(4),580,971)
+onclicknumbtn2(im.dialfive,frame16,dial_5,str(5),707,971)
+onclicknumbtn2(im.dialsix,frame16,dial_6,str(6),835,971)
+onclicknumbtn2(im.dialseven,frame16,dial_7,str(7),580,1063)
+onclicknumbtn2(im.dialeight,frame16,dial_8,str(8),707,1063)
+onclicknumbtn2(im.dialnine,frame16,dial_9,str(9),835,1063)
 
-goframbtn(bothomebtn,frame16,bot_btn_home,frame1,75,1288)
-goframbtn(botprevbtn,frame16,bot_btn_prev,frame15,201,1288)
+goframbtn(im.bothomebtn,frame16,bot_btn_home,frame1,75,1288)
+goframbtn(im.botprevbtn,frame16,bot_btn_prev,frame15,201,1288)
 
 botokbtn = Button(frame16, image=bot_btn_ok, relief="flat", command=lambda:a_function2(3))
 botokbtn.place(x=880, y=1285)
@@ -753,18 +724,18 @@ botokbtn.place(x=880, y=1285)
 #goframbtn(botokbtn,frame17,bot_btn_ok,frame18,880,1285)
 
 #=================frame18=================
-goframbtn(botokbtn,frame18,bot_btn_ok,frame19,880,1285)
-goframbtn(sub17cardbtn,frame18,sub17_btn_card,frame19,115,1090)
+goframbtn(im.botokbtn,frame18,bot_btn_ok,frame19,880,1285)
+goframbtn(im.sub17cardbtn,frame18,sub17_btn_card,frame19,115,1090)
 #goframbtn(sub17cashbtn,frame18,sub17_btn_cash,frame21,560,1090)
-goframbtn(bothomebtn,frame18,bot_btn_home,frame1,75,1288)
-goframbtn(botprevbtn,frame18,bot_btn_prev,frame16,201,1288)
+goframbtn(im.bothomebtn,frame18,bot_btn_home,frame1,75,1288)
+goframbtn(im.botprevbtn,frame18,bot_btn_prev,frame16,201,1288)
 
 
 #=================frame19=================
-goframbtn(botokbtn,frame19,bot_btn_ok,frame20,880,1285)
-goframbtn(sub18cardbtn,frame19,sub18_btn_card,frame20,115,950)
-goframbtn(bothomebtn,frame19,bot_btn_home,frame1,75,1288)
-goframbtn(botprevbtn,frame19,bot_btn_prev,frame18,201,1288)
+goframbtn(im.botokbtn,frame19,bot_btn_ok,frame20,880,1285)
+goframbtn(im.sub18cardbtn,frame19,sub18_btn_card,frame20,115,950)
+goframbtn(im.bothomebtn,frame19,bot_btn_home,frame1,75,1288)
+goframbtn(im.botprevbtn,frame19,bot_btn_prev,frame18,201,1288)
 
 
 #=================frame20=================
@@ -778,7 +749,7 @@ botokbtn.place(x=880, y=1285)
 #goframbtn(botokbtn,frame22,bot_btn_ok,frame23,880,1285)
 
 #================= LAST frame23 ================
-goframbtn(subokbtn,frame23,sub_btn_ok,frame1,880,1285)
+goframbtn(im.subokbtn,frame23,sub_btn_ok,frame1,880,1285)
 
 frame6_title = tk.Label(frame6, text="This is frame 6", bg='green')
 frame6_title.pack(fill='x')
