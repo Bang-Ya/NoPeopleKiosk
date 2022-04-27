@@ -1,11 +1,23 @@
-
 from tkinter import *
 import tkinter as tk
 import threading
+from playsound import playsound
+soundtf = True
 
+
+
+
+
+#sound 사용여부
+def soundplaytest(filename):
+    if soundtf == True:
+        playsound("D:\\pythonkshProject\\audio\\" + filename + ".mp3")
+def frameaudio2():
+    soundplaytest('test')
 
 
 class btnderation:
+
     juminbtn = Button
     landbtn = Button
     comprevbtn = Button

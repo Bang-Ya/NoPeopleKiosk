@@ -3,7 +3,7 @@ import tkinter as tk
 from playsound import playsound
 import threading
 from imtest import btnderation as im
-
+from imtest import *
 
 
 # show frame
@@ -19,32 +19,12 @@ window.columnconfigure(0,weight=1)
 
 #프레임 기본틀생성
 
-frame1=tk.Frame(window)
-frame2=tk.Frame(window)
-frame3=tk.Frame(window)
-frame4=tk.Frame(window)
-frame5=tk.Frame(window)
-frame6=tk.Frame(window)
-frame7=tk.Frame(window)
-frame8=tk.Frame(window)
-frame9=tk.Frame(window)
-frame10=tk.Frame(window)
-frame11=tk.Frame(window)
-frame11_1=tk.Frame(window)
-frame11_2=tk.Frame(window)
-frame12=tk.Frame(window)
-frame13=tk.Frame(window)
-frame14=tk.Frame(window)
-frame15=tk.Frame(window)
-frame16=tk.Frame(window)
-frame17=tk.Frame(window)
-frame18=tk.Frame(window)
-frame19=tk.Frame(window)
-frame20=tk.Frame(window)
-frame21=tk.Frame(window)
-frame22=tk.Frame(window)
-frame23=tk.Frame(window)
-frame24=tk.Frame(window)
+frame1,frame2,frame3,frame4,frame5,frame6,frame7,frame8,frame9,frame10,frame11,frame11_1,frame11_2,frame12,frame13,frame14,frame15,frame16,frame17,frame18,frame19,frame20,frame21,frame22,frame23,frame24=tk.Frame(window),tk.Frame(window),tk.Frame(window),tk.Frame(window),tk.Frame(window),tk.Frame(window),tk.Frame(window),tk.Frame(window),tk.Frame(window),tk.Frame(window),tk.Frame(window),tk.Frame(window),tk.Frame(window),tk.Frame(window),tk.Frame(window),tk.Frame(window),tk.Frame(window),tk.Frame(window),tk.Frame(window),tk.Frame(window),tk.Frame(window),tk.Frame(window),tk.Frame(window),tk.Frame(window),tk.Frame(window),tk.Frame(window)
+
+#프레임 사용을 위해 선언한 프레임 grid작업 반복
+for frame in (frame1,frame2,frame3,frame4,frame5,frame6,frame7,frame8,frame9,frame10,frame11,frame11_1,frame11_2,frame12,frame13,frame14,frame15,frame16,frame17,frame18,
+              frame19,frame20,frame21,frame22,frame23,frame24):
+    frame.grid(row=0,column=0,sticky='nsew')
 
 # 전체화면 활성화 기분값==전체화면 F11+F12 입력시 창모드로 전환..
 window.attributes("-fullscreen", True)
@@ -53,10 +33,6 @@ window.bind("<F11>"+"<F12>", lambda event: window.attributes("-fullscreen",
 window.bind("<Escape>", lambda event: window.attributes("-fullscreen", False))
 
 
-#프레임 사용을 위해 선언한 프레임 grid작업 반복
-for frame in (frame1,frame2,frame3,frame4,frame5,frame6,frame7,frame8,frame9,frame10,frame11,frame11_1,frame11_2,frame12,frame13,frame14,frame15,frame16,frame17,frame18,
-              frame19,frame20,frame21,frame22,frame23,frame24):
-    frame.grid(row=0,column=0,sticky='nsew')
 
 #최초 기본 프레임 호출
 show_frame(frame1)
@@ -151,7 +127,7 @@ count=0
 price=10
 
 #sound 사용여부
-soundtf=True
+#soundtf=True
 #juminnumtest
 
 jumininput=Label
@@ -209,6 +185,8 @@ def placebtn(btnname,nowframe,imgname,xplace,yplace):
 def getlabel(labelname,nowframe,xplace,yplace):
     labelname = Label(nowframe, relief="flat",text="-",font=("Times",30),background='White')
     labelname.place(x=xplace, y=yplace)
+
+
 
 # 주민등록 번호 입력시 6자를 초과하면 juminent2로 데이터를 입력시킴
 def onClicknum(txt):
@@ -373,21 +351,6 @@ def c_function3():
     show_frame(frame23)
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 #프레임 이동 ---> 오디오 플레이를 위한 함수 최적화 생성중....
 
 #선 프레임 이동 후 오디오 재생
@@ -395,35 +358,11 @@ def frameaudio():
     show_frame(frame3)
     threading.Timer(0.3, frameaudio2).start()
 
-# 후 오디오 플레이 작업 soundplaytest 에서 mp3형식으로 박아두었음. 파일명만 입력하면 됌.
-def frameaudio2():
-    soundplaytest("02.등본_01")
-
-def soundplaytest(filename):
-    if soundtf == True:
-        playsound("D:\\pythonkshProject\\audio\\"+filename+".mp3")
-
-
-
-
-
-
-
+# 후 오디오 플레이 작업 soundplaytest 에서 mp3형식으로 박아두었음. 함수imtest 파일로 이동시킴 입력하면 됌.
 
 
 
 #함수 끝=========함수 끝=========함수 끝=========함수 끝=========함수 끝=========
-
-
-
-
-
-
-
-
-
-
-
 
 
 #프레임 찍어내기 시작
@@ -551,21 +490,7 @@ frame5_btn.pack()
 
 #프레임별 버튼 박아두기.
 goframbtn(im.botokbtn,frame6,bot_btn_ok,frame7,880,1285)
-"""
-goframbtn(botokbtn,frame8,bot_btn_ok,frame9,880,1285)
-goframbtn(botokbtn,frame9,bot_btn_ok,frame10,880,1285)
-goframbtn(botokbtn,frame10,bot_btn_ok,frame11,880,1285)
-goframbtn(botokbtn,frame11,bot_btn_ok,frame12,880,1285)
-goframbtn(botokbtn,frame12,bot_btn_ok,frame13,880,1285)
-goframbtn(botokbtn,frame13,bot_btn_ok,frame14,880,1285)
-goframbtn(botokbtn,frame14,bot_btn_ok,frame15,880,1285)
-goframbtn(botokbtn,frame15,bot_btn_ok,frame16,880,1285)
-goframbtn(botokbtn,frame16,bot_btn_ok,frame17,880,1285)
-goframbtn(botokbtn,frame17,bot_btn_ok,frame18,880,1285)
-goframbtn(botokbtn,frame18,bot_btn_ok,frame19,880,1285)
-goframbtn(botokbtn,frame19,bot_btn_ok,frame20,880,1285)
-goframbtn(botokbtn,frame20,bot_btn_ok,frame1,880,1285)
-"""
+
 
 #===========frame7============================================
 
@@ -645,16 +570,6 @@ goframbtn(im.bothomebtn,frame11,bot_btn_home,frame1,75,1288)
 #===========frame12============================================
 goframbtn(im.botokbtn,frame12,bot_btn_ok,frame15,880,1285)
 
-
-"""
-goframbtn(selcourtbtn,frame12,sel_btn_court,frame8,29,770)
-goframbtn(seledubtn,frame12,sel_btn_edu,frame9,29,865)
-goframbtn(selpublicbtn,frame12,sel_brn_public,frame10,29,960)
-goframbtn(sellandbtn,frame12,sel_btn_land,frame11,29,1055)
-#goframbtn(selhostbtn,frame12,sel_btn_host,frame12,29,1150)
-goframbtn(selallbtn,frame12,sel_btn_all,frame11_1,700,715)
-goframbtn(selnonebtn,frame12,sel_btn_none,frame11_2,880,715)
-"""
 #===========frame11_1============================================
 
 goframbtn(im.botokbtn,frame11_1,bot_btn_ok,frame15,880,1285)
