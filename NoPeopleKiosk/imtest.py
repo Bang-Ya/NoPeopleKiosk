@@ -6,15 +6,31 @@ soundtf = True
 
 
 
-
-
 #sound 사용여부
 def soundplaytest(filename):
     if soundtf == True:
         playsound("D:\\pythonkshProject\\audio\\" + filename + ".mp3")
-def frameaudio2():
-    soundplaytest('test')
+#함수별 음성파일 지정
+def deungaudio1():
+    soundplaytest('02.등본_01')
+def deungaudio2():
+    soundplaytest('02.등본_02')
+def deungaudio3():
+    soundplaytest('02.등본_03')
+def deungaudio4():
+    soundplaytest('02.등본_04')
+def deungaudio5():
+    soundplaytest('02.등본_05')
+def deungaudio6():
+    soundplaytest('02.등본_06')
 
+
+
+
+# frame3 insert " - "
+def getlabel(labelname,nowframe,xplace,yplace):
+    labelname = Label(nowframe, relief="flat",text="-",font=("Times",30),background='White')
+    labelname.place(x=xplace, y=yplace)
 
 class btnderation:
 
