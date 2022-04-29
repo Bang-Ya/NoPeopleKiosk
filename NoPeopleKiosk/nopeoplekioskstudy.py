@@ -5,6 +5,7 @@ import threading
 from imtest import btnderation as im
 from imtest import *
 
+soundtf = False
 
 # show frame
 def show_frame(frame):
@@ -288,6 +289,32 @@ def onclicknumbtn2(btnname,nowframe,imgname,text,xplace,yplace):
 
 
 
+#sound 사용여부
+def soundplaytest(filename):
+    global soundtf
+    if soundtf == True:
+        playsound("D:\\pythonkshProject\\audio\\" + filename + ".mp3")
+        print(soundtf)
+    elif soundtf == False:
+        print("soundtf is false")
+    else:
+        print ("soundtf ERROR")
+
+
+
+#함수별 음성파일 지정
+def deungaudio1():
+    soundplaytest('02.등본_01')
+def deungaudio2():
+    soundplaytest('02.등본_02')
+def deungaudio3():
+    soundplaytest('02.등본_03')
+def deungaudio4():
+    soundplaytest('02.등본_04')
+def deungaudio5():
+    soundplaytest('02.등본_05')
+def deungaudio6():
+    soundplaytest('02.등본_06')
 #===============  Jump to frame 17 ====================================
 def a_function2(time):
     show_frame(frame17)
