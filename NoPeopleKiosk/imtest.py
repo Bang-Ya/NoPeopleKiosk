@@ -11,6 +11,8 @@ def getlabel(labelname,nowframe,xplace,yplace):
     labelname = Label(nowframe, relief="flat",text="-",font=("Times",30),background='White')
     labelname.place(x=xplace, y=yplace)
 
+
+#버튼  선언 이미지의 파일명과 매칭을 위해 이름순서를 바꿔 조합하였음.
 class btnderation:
 
     juminbtn = Button
@@ -49,3 +51,4 @@ class btnderation:
     sub17cashbtn = Button
     sub18cardbtn = Button
     subokbtn = Button
+    boxselectbtn=Button

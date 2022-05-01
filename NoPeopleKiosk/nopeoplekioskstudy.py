@@ -4,8 +4,11 @@ from playsound import playsound
 import threading
 from imtest import btnderation as im
 from imtest import *
-
+#사운드 사용여부
 soundtf = False
+#가격, 매수 정보
+count=0
+price=10
 
 # show frame
 def show_frame(frame):
@@ -19,8 +22,13 @@ window.rowconfigure(0,weight=1)
 window.columnconfigure(0,weight=1)
 
 
-count=0
-price=10
+# 전체화면 활성화 기분값==전체화면 F11+F12 입력시 창모드로 전환..
+window.attributes("-fullscreen", True)
+window.bind("<F11>"+"<F12>", lambda event: window.attributes("-fullscreen",
+                                    not window.attributes("-fullscreen")))
+window.bind("<Escape>", lambda event: window.attributes("-fullscreen", False))
+
+
 
 #프레임 기본틀생성
 
@@ -31,23 +39,20 @@ for frame in (frame1,frame2,frame3,frame4,frame5,frame6,frame7,frame8,frame9,fra
               frame19,frame20,frame21,frame22,frame23,frame24):
     frame.grid(row=0,column=0,sticky='nsew')
 
-# 전체화면 활성화 기분값==전체화면 F11+F12 입력시 창모드로 전환..
-window.attributes("-fullscreen", True)
-window.bind("<F11>"+"<F12>", lambda event: window.attributes("-fullscreen",
-                                    not window.attributes("-fullscreen")))
-window.bind("<Escape>", lambda event: window.attributes("-fullscreen", False))
-
-
 
 #최초 기본 프레임 호출
 show_frame(frame1)
 
-#wall
 
+#wall
 #img 선언 작업 대부분 파일명과 동일하게 작업했다.
 top = PhotoImage(file='img/img_top.png')
 bot = PhotoImage(file='img/img_bot.png')
 wall = PhotoImage(file = "img/con_main.png")
+#for consubnum in consubls :
+#    consubls=PhotoImage(file='img/'+consubls+'.png')
+
+
 consub1=PhotoImage(file="img/con_sub1.png")
 consub2=PhotoImage(file="img/con_sub2.png")
 consub3=PhotoImage(file="img/con_sub3.png")
@@ -118,31 +123,19 @@ sub14_btn_ok2=PhotoImage(file="img/sub14_btn_ok2.png")
 sub17_btn_card=PhotoImage(file="img/sub17_btn_card.png")
 sub17_btn_cash=PhotoImage(file="img/sub17_btn_cash.png")
 sub18_btn_card=PhotoImage(file="img/sub18_btn_card.png")
-
-
-#버튼  선언 이미지의 파일명과 매칭을 위해 이름순서를 바꿔 조합하였음.
-
-
-#추부 가격과 매수 계산을 위해 선언 함수에 사용됨
-
-#sound 사용여부
-#soundtf=True
-#juminnumtest
+box_select=PhotoImage(file="img/box_select.png")
 
 jumininput=Label
 # 초기 프레임 생성시 주민등록번호 입력창에 넣어놨던 리스트 추후 사용가능성이 있어보여 남겨둠.
 #juminlst=['_','_','_','_','_','_','_','_','_','_','_','_','_']
 # print(juminlst[0]+juminlst[1]+juminlst[2]+juminlst[3]+juminlst[4]+juminlst[5]+'-'+juminlst[6]+juminlst[7]+juminlst[8]+juminlst[9]+juminlst[10]+juminlst[11]+juminlst[12])
 
-#juminent=Entry
-#juminent2=Entry
-#코드 줄이려고 테스트중
 
 
 def placset2(name):
     return name.place
 
-
+#기본 배경 위치값 설정.
 def setbackgroun(framenum, imagenm):
     top_label = Label(framenum, image=top)
     top_label.place(x=-2, y=-2)
@@ -150,7 +143,6 @@ def setbackgroun(framenum, imagenm):
     wall_label.place(x=-2, y=646)
     bot_label = Label(framenum, image=bot)
     bot_label.place(x=-2, y=1457)
-
 
 
 #=====================================================================================
@@ -169,8 +161,6 @@ def function_a(time):
 def function_b():
     deungaudio3()
     show_frame(frame7)
-
-
 
 
 #================================================================================================================
@@ -426,6 +416,21 @@ goframbtn(im.juminbtn,frame1,btn_jumin,frame2,80,760)
 #goframbtn(landbtn,frame1,btn_land,frame2,310,760)
 goframbtn(im.comprevbtn,frame1,btn_prev,frame23,30,30)
 goframbtn(im.comhomebtn,frame1,btn_home,frame1,950,30)
+#사운드 사용여부 선택
+def selectboxbtn():
+    global soundtf
+    if soundtf==True:
+        soundtf=False
+        print(soundtf)
+    elif soundtf==False:
+        soundtf=True
+        print(soundtf)
+    else:
+        print('soundtf is error')
+
+
+boxselectbtn = Button(frame1, image=box_select, relief="flat", command=lambda:selectboxbtn() )
+boxselectbtn.place(x=400, y=100)
 
 
 
@@ -520,25 +525,9 @@ frame5_btn.pack()
 
 #프레임별 버튼 박아두기.
 goframbtn(im.botokbtn,frame6,bot_btn_ok,frame7,880,1285)
-"""
-goframbtn(botokbtn,frame8,bot_btn_ok,frame9,880,1285)
-goframbtn(botokbtn,frame9,bot_btn_ok,frame10,880,1285)
-goframbtn(botokbtn,frame10,bot_btn_ok,frame11,880,1285)
-goframbtn(botokbtn,frame11,bot_btn_ok,frame12,880,1285)
-goframbtn(botokbtn,frame12,bot_btn_ok,frame13,880,1285)
-goframbtn(botokbtn,frame13,bot_btn_ok,frame14,880,1285)
-goframbtn(botokbtn,frame14,bot_btn_ok,frame15,880,1285)
-goframbtn(botokbtn,frame15,bot_btn_ok,frame16,880,1285)
-goframbtn(botokbtn,frame16,bot_btn_ok,frame17,880,1285)
-goframbtn(botokbtn,frame17,bot_btn_ok,frame18,880,1285)
-goframbtn(botokbtn,frame18,bot_btn_ok,frame19,880,1285)
-goframbtn(botokbtn,frame19,bot_btn_ok,frame20,880,1285)
-goframbtn(botokbtn,frame20,bot_btn_ok,frame1,880,1285)
-"""
+
 
 #===========frame7============================================
-
-
 
 goframbtn(im.comprevbtn,frame7,btn_prev,frame3,30,30)
 goframbtn(im.comhomebtn,frame7,btn_home,frame1,950,30)
@@ -552,7 +541,6 @@ goframbtn(im.selallbtn,frame7,sel_btn_all,frame11_1,700,715)
 goframbtn(im.selnonebtn,frame7,sel_btn_none,frame11_2,880,715)
 goframbtn(im.bothomebtn,frame7,bot_btn_home,frame1,75,1288)
 goframbtn(im.botprevbtn,frame7,bot_btn_prev,frame4,201,1288)
-
 
 #===========frame8============================================
 
@@ -596,7 +584,6 @@ goframbtn(im.selallbtn,frame10,sel_btn_all,frame11_1,700,715)
 goframbtn(im.selnonebtn,frame10,sel_btn_none,frame11_2,880,715)
 goframbtn(im.bothomebtn,frame10,bot_btn_home,frame1,75,1288)
 
-
 #===========frame11============================================
 
 goframbtn(im.comprevbtn,frame11,btn_prev,frame7,30,30)
@@ -614,16 +601,6 @@ goframbtn(im.bothomebtn,frame11,bot_btn_home,frame1,75,1288)
 #===========frame12============================================
 goframbtn(im.botokbtn,frame12,bot_btn_ok,frame15,880,1285)
 
-
-"""
-goframbtn(selcourtbtn,frame12,sel_btn_court,frame8,29,770)
-goframbtn(seledubtn,frame12,sel_btn_edu,frame9,29,865)
-goframbtn(selpublicbtn,frame12,sel_brn_public,frame10,29,960)
-goframbtn(sellandbtn,frame12,sel_btn_land,frame11,29,1055)
-#goframbtn(selhostbtn,frame12,sel_btn_host,frame12,29,1150)
-goframbtn(selallbtn,frame12,sel_btn_all,frame11_1,700,715)
-goframbtn(selnonebtn,frame12,sel_btn_none,frame11_2,880,715)
-"""
 #===========frame11_1============================================
 
 goframbtn(im.botokbtn,frame11_1,bot_btn_ok,frame15,880,1285)
