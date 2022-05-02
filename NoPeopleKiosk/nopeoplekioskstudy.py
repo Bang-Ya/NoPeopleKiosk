@@ -10,6 +10,20 @@ soundtf = False
 count=0
 price=10
 
+
+#처리 해야할일 ***********************************
+"""
+1. 주민등록번호 정정, 삭제 번튼 클릭시 다음 단계 버튼 hide
+2. 소스 분할 
+-선언
+-함수
+-동작
+3. 초기 사운드 사용여부 버튼 이미지 구해서 임시로 박아둔 boxselectbtn대체해야함.
+
+"""
+
+
+
 # show frame
 def show_frame(frame):
     frame.tkraise()
@@ -283,12 +297,13 @@ def onclicknumbtn2(btnname,nowframe,imgname,text,xplace,yplace):
 def soundplaytest(filename):
     global soundtf
     if soundtf == True:
-        playsound("D:\\pythonkshProject\\audio\\" + filename + ".mp3")
+        #playsound("D:\\pythonkshProject\\audio\\" + filename + ".mp3")
+        playsound(filename + ".mp3")
         print(soundtf)
     elif soundtf == False:
         print("soundtf is false")
     else:
-        print ("soundtf ERROR")
+        print("soundtf ERROR")
 
 
 
@@ -416,7 +431,7 @@ goframbtn(im.juminbtn,frame1,btn_jumin,frame2,80,760)
 #goframbtn(landbtn,frame1,btn_land,frame2,310,760)
 goframbtn(im.comprevbtn,frame1,btn_prev,frame23,30,30)
 goframbtn(im.comhomebtn,frame1,btn_home,frame1,950,30)
-#사운드 사용여부 선택
+
 def selectboxbtn():
     global soundtf
     if soundtf==True:
@@ -626,8 +641,6 @@ goframbtn(im.bothomebtn,frame11_2,bot_btn_home,frame1,75,1288)
 
 
 #goframbtn(selnonebtn,frame11_2,sel_btn_none,frame11_2,880,715)
-
-
 
 #=================frame15=================
 goframbtn(im.botokbtn,frame15,bot_btn_ok,frame16,880,1285)

@@ -14,7 +14,6 @@ def getlabel(labelname,nowframe,xplace,yplace):
 
 #버튼  선언 이미지의 파일명과 매칭을 위해 이름순서를 바꿔 조합하였음.
 class btnderation:
-
     juminbtn = Button
     landbtn = Button
     comprevbtn = Button
@@ -26,7 +25,7 @@ class btnderation:
     # set dial button Name 다이얼 버튼
     dialzero = Button
     # test.py에 하드 코딩 해뒀음  dialone=Button
-    #dialone = Button
+    # dialone = Button
     dialtwo = Button
     dialthree = Button
     dialfour = Button
@@ -51,4 +50,4 @@ class btnderation:
     sub17cashbtn = Button
     sub18cardbtn = Button
     subokbtn = Button
-    boxselectbtn=Button
+    boxselectbtn = Button
