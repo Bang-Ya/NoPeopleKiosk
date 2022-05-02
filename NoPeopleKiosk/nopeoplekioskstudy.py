@@ -13,12 +13,13 @@ price=10
 
 #처리 해야할일 ***********************************
 """
-1. 주민등록번호 정정, 삭제 번튼 클릭시 다음 단계 버튼 hide
-2. 소스 분할 
+1) 주민등록번호 정정, 삭제 버튼 클릭시 다음 단계 버튼 hide ----------------------해결
+2) 초기 사운드 사용여부 버튼 이미지 구해서 임시로 박아둔 boxselectbtn대체해야함.
+3) .exe 파일로 변환시 음성파일이 한방에 안나온다? 해당프레임으로 두번쨰 돌아왔을떄 부터 나오네???
+4) 소스 분할
 -선언
 -함수
 -동작
-3. 초기 사운드 사용여부 버튼 이미지 구해서 임시로 박아둔 boxselectbtn대체해야함.
 
 """
 
@@ -188,14 +189,19 @@ def placebtn(btnname,nowframe,imgname,xplace,yplace):
     btnname = Button(nowframe, image=imgname, relief="flat")
     btnname.place(x=xplace, y=yplace)
 
-
+def deljumin():
+    juminent.delete(0, END)
+    juminent2.delete(0, END)
+def fgplace():
+    botframe4.place_forget()
 # 주민등록 번호 입력시 6자를 초과하면 juminent2로 데이터를 입력시킴
 def onClicknum(txt):
-    if txt=="del":
-        juminent.delete(0,END)
-        juminent2.delete(0, END)
 
+    if txt=="del":
+        deljumin()
+        fgplace()
     elif txt=="mod":
+        fgplace()
         # 여기버튼 아직 해결못함. if문 반복해야하나?
         if len(juminent2.get()) >= 7:
             juminent2.delete(6,END)
@@ -231,8 +237,12 @@ def onClicknum(txt):
            #juminent2의 길이가 6이하면 버튼 사라지게 처리하자..
             if len(juminent2.get()) > 6:
                 #goframbtn(botokbtn, frame3, bot_btn_ok, frame4, 880, 1285)
-                botokbtn = Button(frame3, image=bot_btn_ok, relief="flat", command=lambda: [show_frame(frame4),creatcallaudio(frame4,deungaudio2)])
-                botokbtn.place(x=880, y=1285)
+
+
+                botframe4.place(x=880, y=1285)
+
+
+
                # juminent.delete(0, END), juminent2.delete(0, END)
                 #creatcallaudio(frame4,deungaudio2)
         else:
@@ -292,7 +302,6 @@ def onclicknumbtn2(btnname,nowframe,imgname,text,xplace,yplace):
 #=============== frame16 다이얼처리 END ====================================
 
 
-
 #sound 사용여부
 def soundplaytest(filename):
     global soundtf
@@ -304,8 +313,6 @@ def soundplaytest(filename):
         print("soundtf is false")
     else:
         print("soundtf ERROR")
-
-
 
 #함수별 음성파일 지정
 def deungaudio1():
@@ -423,6 +430,7 @@ setbackgroun(frame21,consub20)
 setbackgroun(frame22,consub21)
 setbackgroun(frame23,consub29)
 setbackgroun(frame24,consub23)
+
 #=======frame1===========frame1=========frame1==========frame1==========
 #frame1 background
 setbackgroun(frame1,wall)
@@ -508,6 +516,13 @@ frame3_btn.pack()
 
 
 #===========frame4============================================
+#onClicknum 함수를 통해 .place 와 place_forget 을 제어함.
+#deljumin(),fgplace()함수를 이용하여 버튼 클릭시 자동으로 입력값을 초기화 하면서 ok버튼을 forget시켰다
+botframe4 = Button(frame3, image=bot_btn_ok, relief="flat",
+                                           command=lambda: [show_frame(frame4), creatcallaudio(frame4, deungaudio2),deljumin(),fgplace()])
+
+
+
 #frame4 background
 setbackgroun(frame4,consub3)
 #frame4_btn etc...
