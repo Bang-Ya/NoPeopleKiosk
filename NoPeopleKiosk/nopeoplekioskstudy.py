@@ -10,7 +10,6 @@ soundtf = False
 count=0
 price=10
 
-
 #처리 해야할일 ***********************************
 """
 1) 주민등록번호 정정, 삭제 버튼 클릭시 다음 단계 버튼 hide ----------------------해결
@@ -20,10 +19,7 @@ price=10
 -선언
 -함수
 -동작
-
 """
-
-
 
 # show frame
 def show_frame(frame):
@@ -36,14 +32,11 @@ window.state('zoomed')
 window.rowconfigure(0,weight=1)
 window.columnconfigure(0,weight=1)
 
-
 # 전체화면 활성화 기분값==전체화면 F11+F12 입력시 창모드로 전환..
 window.attributes("-fullscreen", True)
 window.bind("<F11>"+"<F12>", lambda event: window.attributes("-fullscreen",
                                     not window.attributes("-fullscreen")))
 window.bind("<Escape>", lambda event: window.attributes("-fullscreen", False))
-
-
 
 #프레임 기본틀생성
 
@@ -54,10 +47,8 @@ for frame in (frame1,frame2,frame3,frame4,frame5,frame6,frame7,frame8,frame9,fra
               frame19,frame20,frame21,frame22,frame23,frame24):
     frame.grid(row=0,column=0,sticky='nsew')
 
-
 #최초 기본 프레임 호출
 show_frame(frame1)
-
 
 #wall
 #img 선언 작업 대부분 파일명과 동일하게 작업했다.
@@ -66,7 +57,6 @@ bot = PhotoImage(file='img/img_bot.png')
 wall = PhotoImage(file = "img/con_main.png")
 #for consubnum in consubls :
 #    consubls=PhotoImage(file='img/'+consubls+'.png')
-
 
 consub1=PhotoImage(file="img/con_sub1.png")
 consub2=PhotoImage(file="img/con_sub2.png")
@@ -145,8 +135,6 @@ jumininput=Label
 #juminlst=['_','_','_','_','_','_','_','_','_','_','_','_','_']
 # print(juminlst[0]+juminlst[1]+juminlst[2]+juminlst[3]+juminlst[4]+juminlst[5]+'-'+juminlst[6]+juminlst[7]+juminlst[8]+juminlst[9]+juminlst[10]+juminlst[11]+juminlst[12])
 
-
-
 def placset2(name):
     return name.place
 
@@ -158,7 +146,6 @@ def setbackgroun(framenum, imagenm):
     wall_label.place(x=-2, y=646)
     bot_label = Label(framenum, image=bot)
     bot_label.place(x=-2, y=1457)
-
 
 #=====================================================================================
 
@@ -176,7 +163,6 @@ def function_a(time):
 def function_b():
     deungaudio3()
     show_frame(frame7)
-
 
 #================================================================================================================
 
@@ -238,10 +224,7 @@ def onClicknum(txt):
             if len(juminent2.get()) > 6:
                 #goframbtn(botokbtn, frame3, bot_btn_ok, frame4, 880, 1285)
 
-
                 botframe4.place(x=880, y=1285)
-
-
 
                # juminent.delete(0, END), juminent2.delete(0, END)
                 #creatcallaudio(frame4,deungaudio2)
@@ -301,7 +284,6 @@ def onclicknumbtn2(btnname,nowframe,imgname,text,xplace,yplace):
 
 #=============== frame16 다이얼처리 END ====================================
 
-
 #sound 사용여부
 def soundplaytest(filename):
     global soundtf
@@ -332,7 +314,6 @@ def a_function2(time):
     show_frame(frame17)
     threading.Timer(time, b_function2).start()
     framelabelresult()
-
 
 def b_function2():
     global price
@@ -386,9 +367,6 @@ def b_function3():
     threading.Timer(3, c_function3).start()
 def c_function3():
     show_frame(frame23)
-
-
-
 
 #프레임 이동 ---> 오디오 플레이를 위한 함수 최적화 생성중....
 
@@ -451,11 +429,8 @@ def selectboxbtn():
     else:
         print('soundtf is error')
 
-
 boxselectbtn = Button(frame1, image=box_select, relief="flat", command=lambda:selectboxbtn() )
 boxselectbtn.place(x=400, y=100)
-
-
 
 #=======frame2===========frame2=========frame2==========frame2==========
 #frame2 background
@@ -520,7 +495,6 @@ frame3_btn.pack()
 #deljumin(),fgplace()함수를 이용하여 버튼 클릭시 자동으로 입력값을 초기화 하면서 ok버튼을 forget시켰다
 botframe4 = Button(frame3, image=bot_btn_ok, relief="flat",
                                            command=lambda: [show_frame(frame4), creatcallaudio(frame4, deungaudio2),deljumin(),fgplace()])
-
 
 
 #frame4 background
@@ -744,7 +718,6 @@ frame9_title = tk.Label(frame9, text="This is frame 8", bg='green')
 frame9_title.pack(fill='x')
 frame9_btn = tk.Button(frame9, text='enter',command=lambda:show_frame(frame1))
 frame9_btn.pack()
-
 
 #finish
 window.mainloop()
