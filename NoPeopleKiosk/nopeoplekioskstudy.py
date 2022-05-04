@@ -5,7 +5,7 @@ import threading
 from imtest import btnderation as im
 from imtest import *
 #사운드 사용여부
-soundtf = False
+soundtf = True
 #가격, 매수 정보
 count=0
 price=10
@@ -55,8 +55,10 @@ show_frame(frame1)
 top = PhotoImage(file='img/img_top.png')
 bot = PhotoImage(file='img/img_bot.png')
 wall = PhotoImage(file = "img/con_main.png")
-#for consubnum in consubls :
-#    consubls=PhotoImage(file='img/'+consubls+'.png')
+
+subname =['consub1','consub2']
+filename =['con_sub1','con_sub2']
+
 
 consub1=PhotoImage(file="img/con_sub1.png")
 consub2=PhotoImage(file="img/con_sub2.png")
