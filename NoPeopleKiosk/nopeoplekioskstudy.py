@@ -2,8 +2,14 @@ from tkinter import *
 import tkinter as tk
 from playsound import playsound
 import threading
+import datetime
+import log_test as log
 from imtest import btnderation as im
 from imtest import *
+
+
+
+
 #사운드 사용여부
 soundtf = True
 #가격, 매수 정보
@@ -15,10 +21,15 @@ price=10
 1) 주민등록번호 정정, 삭제 버튼 클릭시 다음 단계 버튼 hide ----------------------해결
 2) 초기 사운드 사용여부 버튼 이미지 구해서 임시로 박아둔 boxselectbtn대체해야함.
 3) .exe 파일로 변환시 음성파일이 한방에 안나온다? 해당프레임으로 두번쨰 돌아왔을떄 부터 나오네???
+    - 음서파일 경로를 바꿔 해결은되었으나 근본적인 해결책 방안 필요
 4) 소스 분할
 -선언
 -함수
 -동작
+5)로그 기능 추가
+- 로그 추가 확인하였음. 
+- 전체 화면전환, 버튼 클릭시 로그추가 작업 필요
+- 로그 1일단위 파일 바뀌게 처리 필요.
 """
 
 # show frame
@@ -31,6 +42,10 @@ window=tk.Tk()
 window.state('zoomed')
 window.rowconfigure(0,weight=1)
 window.columnconfigure(0,weight=1)
+
+#프로그램 아이콘, 이름 설정.
+window.iconbitmap('bluelogo.ico')
+window.title('무인민원교육키오스크-블루미디어')
 
 # 전체화면 활성화 기분값==전체화면 F11+F12 입력시 창모드로 전환..
 window.attributes("-fullscreen", True)
@@ -188,8 +203,11 @@ def onClicknum(txt):
     if txt=="del":
         deljumin()
         fgplace()
+        log.logger.info('삭제 버튼 클릭')
+
     elif txt=="mod":
         fgplace()
+        log.logger.info('정정 버튼 클릭')
         # 여기버튼 아직 해결못함. if문 반복해야하나?
         if len(juminent2.get()) >= 7:
             juminent2.delete(6,END)
@@ -223,15 +241,18 @@ def onClicknum(txt):
             juminent2.insert(END, txt)
            #juminent2의 길이가 7이 되어야 버튼이 활성화 된다
            #juminent2의 길이가 6이하면 버튼 사라지게 처리하자..
+            log.logger.info(txt+'버튼 클릭')
             if len(juminent2.get()) > 6:
                 #goframbtn(botokbtn, frame3, bot_btn_ok, frame4, 880, 1285)
-
                 botframe4.place(x=880, y=1285)
+                if len(juminent2.get()) > 7:
+                    log.logger.info(' 하였지만 주민등록번호 최대길이 초과')
 
-               # juminent.delete(0, END), juminent2.delete(0, END)
+            # juminent.delete(0, END), juminent2.delete(0, END)
                 #creatcallaudio(frame4,deungaudio2)
         else:
             juminent.insert(END, txt)
+            log.logger.info(txt + '버튼 클릭')
 
 def onclicknumbtn(btnname,nowframe,imgname,text,xplace,yplace):
     btnname = Button(nowframe, image=imgname, relief="flat", command=lambda:onClicknum(text))
@@ -410,9 +431,8 @@ setbackgroun(frame21,consub20)
 setbackgroun(frame22,consub21)
 setbackgroun(frame23,consub29)
 setbackgroun(frame24,consub23)
-
 #=======frame1===========frame1=========frame1==========frame1==========
-#frame1 background
+
 setbackgroun(frame1,wall)
 #frame1_btn etc...
 goframbtn(im.juminbtn,frame1,btn_jumin,frame2,80,760)
@@ -470,7 +490,7 @@ juminent2.place(x=550,y=800)
 
 #frame3_dial btn
 #onclicknumbtn 함수를 통해 값을 숫자값을 텍스트형태로 전달하여 후가공함.  추후 해당 함수 찾아 스코를을 줄이기 위해 1번버튼만 하드코딩해둠.
-dialone = Button(frame3, image=dial_1, relief="flat", command=lambda: onClicknum(1))
+dialone = Button(frame3, image=dial_1, relief="flat", command=lambda: onClicknum(str(1)))
 dialone.place(x=590, y=890)
 onclicknumbtn(im.dialtwo,frame3,dial_2,str(2),715,890)
 onclicknumbtn(im.dialthree,frame3,dial_3,str(3),845,890)
@@ -512,11 +532,9 @@ frame4_title.pack(fill='x')
 frame4_btn = tk.Button(frame4, text='enter', command=lambda: function_a(1)) #show_frame(frame5))
 frame4_btn.pack()
 
-
 #===========frame5============================================
 #frame5 background
 setbackgroun(frame5,consub4)
-
 #frame5_btn etc...
 goframbtn(im.comprevbtn,frame5,btn_prev,frame4,30,30)
 goframbtn(im.comhomebtn,frame5,btn_home,frame1,950,30)
@@ -531,7 +549,6 @@ frame5_btn.pack()
 
 #프레임별 버튼 박아두기.
 goframbtn(im.botokbtn,frame6,bot_btn_ok,frame7,880,1285)
-
 
 #===========frame7============================================
 
@@ -629,7 +646,6 @@ goframbtn(im.sellandbtn,frame11_2,sel_btn_land,frame11,29,1055)
 goframbtn(im.selhostbtn,frame11_2,sel_btn_host,frame12,29,1150)
 goframbtn(im.selallbtn,frame11_2,sel_btn_all,frame11_1,700,715)
 goframbtn(im.bothomebtn,frame11_2,bot_btn_home,frame1,75,1288)
-
 
 #goframbtn(selnonebtn,frame11_2,sel_btn_none,frame11_2,880,715)
 
