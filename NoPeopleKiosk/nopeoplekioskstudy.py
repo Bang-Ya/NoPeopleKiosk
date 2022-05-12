@@ -8,8 +8,6 @@ from imtest import btnderation as im
 from imtest import *
 
 
-
-
 #사운드 사용여부
 soundtf = True
 #가격, 매수 정보
@@ -27,14 +25,15 @@ price=10
 -함수
 -동작
 5)로그 기능 추가
-- 로그 추가 확인하였음. 
-- 전체 화면전환, 버튼 클릭시 로그추가 작업 필요
-- 로그 1일단위 파일 바뀌게 처리 필요.
+- 로그 추가 확인하였음. ------------------------------해결
+- 전체 화면전환, 버튼 클릭시 로그추가 작업 필요----------해결
+- 로그 1일단위 파일 바뀌게 처리 필요 -------------------해결
 """
 
 # show frame
 def show_frame(frame):
     frame.tkraise()
+    log.logger.info('change frame to"' + str(frame) + '"')
 
 # tkinter 기본세팅1
 window=tk.Tk()
@@ -50,7 +49,7 @@ window.title('무인민원교육키오스크-블루미디어')
 # 전체화면 활성화 기분값==전체화면 F11+F12 입력시 창모드로 전환..
 window.attributes("-fullscreen", True)
 window.bind("<F11>"+"<F12>", lambda event: window.attributes("-fullscreen",
-                                    not window.attributes("-fullscreen")))
+                                    not window.attributes("-fullscreen"),log.logger.info('창모드,전체화면 전환')))
 window.bind("<Escape>", lambda event: window.attributes("-fullscreen", False))
 
 #프레임 기본틀생성
@@ -184,7 +183,7 @@ def function_b():
 #================================================================================================================
 
 def goframbtn(btnname,nowframe,imgname,nextframe,xplace,yplace):
-    btnname = Button(nowframe, image=imgname, relief="flat", command=lambda: show_frame(nextframe))
+    btnname = Button(nowframe, image=imgname, relief="flat", command=lambda: [show_frame(nextframe),log.logger.info('onclic '+str(btnname)+' from '+str(nowframe))])
     btnname.place(x=xplace, y=yplace)
 
 
@@ -314,14 +313,18 @@ def soundplaytest(filename):
         #playsound("D:\\pythonkshProject\\audio\\" + filename + ".mp3")
         playsound(filename + ".mp3")
         print(soundtf)
+        log.logger.info('play sound ' + str(filename) + '.mp3')
     elif soundtf == False:
         print("soundtf is false")
+        log.logger.info("don't play sound because 'soundtf' is False ")
     else:
         print("soundtf ERROR")
+        log.logger.error("sound play error")
 
 #함수별 음성파일 지정
 def deungaudio1():
     soundplaytest('02.등본_01')
+    log.logger.info('onclic "certbtn" Button from "frame2"')
 def deungaudio2():
     soundplaytest('02.등본_02')
 def deungaudio3():
@@ -445,9 +448,11 @@ def selectboxbtn():
     if soundtf==True:
         soundtf=False
         print(soundtf)
+        log.logger.info("change 'soundtf' -->False")
     elif soundtf==False:
         soundtf=True
         print(soundtf)
+        log.logger.info("change 'soundtf' -->True")
     else:
         print('soundtf is error')
 
