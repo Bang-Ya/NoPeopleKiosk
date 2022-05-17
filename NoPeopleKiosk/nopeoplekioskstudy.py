@@ -3,9 +3,13 @@ import tkinter as tk
 from playsound import playsound
 import threading
 import datetime
+import imgbtn as bt
+from sqlalchemy.sql.elements import conv
+
 import log_test as log
 from imtest import btnderation as im
 from imtest import *
+
 
 
 #사운드 사용여부
@@ -73,6 +77,9 @@ wall = PhotoImage(file = "img/con_main.png")
 subname =['consub1','consub2']
 filename =['con_sub1','con_sub2']
 
+#for i in range(1, 4):
+    #globals()['consub{}=PhotoImage(file="img/con_sub{}.png")'.format(i,i)]
+    #consub{i}=PhotoImage(file="img/con_sub{i}.png")
 
 consub1=PhotoImage(file="img/con_sub1.png")
 consub2=PhotoImage(file="img/con_sub2.png")
@@ -147,6 +154,9 @@ sub18_btn_card=PhotoImage(file="img/sub18_btn_card.png")
 box_select=PhotoImage(file="img/box_select.png")
 
 jumininput=Label
+
+
+
 # 초기 프레임 생성시 주민등록번호 입력창에 넣어놨던 리스트 추후 사용가능성이 있어보여 남겨둠.
 #juminlst=['_','_','_','_','_','_','_','_','_','_','_','_','_']
 # print(juminlst[0]+juminlst[1]+juminlst[2]+juminlst[3]+juminlst[4]+juminlst[5]+'-'+juminlst[6]+juminlst[7]+juminlst[8]+juminlst[9]+juminlst[10]+juminlst[11]+juminlst[12])
@@ -407,6 +417,7 @@ def creatcallaudio(showframe,dename):
 
 # 후 오디오 플레이 작업 soundplaytest 에서 mp3형식으로 박아두었음. 파일명만 입력하면 됌.
 
+
 #함수 끝=========함수 끝=========함수 끝=========함수 끝=========함수 끝=========
 
 
@@ -443,6 +454,10 @@ goframbtn(im.juminbtn,frame1,btn_jumin,frame2,80,760)
 goframbtn(im.comprevbtn,frame1,btn_prev,frame23,30,30)
 goframbtn(im.comhomebtn,frame1,btn_home,frame1,950,30)
 
+
+
+
+
 def selectboxbtn():
     global soundtf
     if soundtf==True:
@@ -475,6 +490,15 @@ goframbtn(im.botprevbtn,frame2,bot_btn_prev,frame1,201,1288)
 
 
 #=======frame3============frame3==============frame3==============frame3========
+#================barcod test=====================
+readbarcod=Entry(frame1, width=7,font=("Times",31))
+readbarcod.place(x=550,y=800)
+readbarcod.focus()
+
+
+
+
+#================barcod test=====================
 #frame3 background
 setbackgroun(frame3,consub2)
 #frame3_btn etc...

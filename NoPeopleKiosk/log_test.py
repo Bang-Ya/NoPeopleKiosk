@@ -10,7 +10,7 @@ LOG_LEVEL = logging.INFO
 
 try:
     logger = logging.getLogger('log_test')
-    logfile_H = logging.handlers.TimedRotatingFileHandler(filename='logs//logfile.log',when='midnight', interval=1, backupCount=LOG_FILE_CNT, encoding='utf-8')
+    logfile_H = logging.handlers.TimedRotatingFileHandler(filename='logs//logfile.log',when='midnight', interval=0, backupCount=LOG_FILE_CNT, encoding='utf-8')
 
     # "%Y-%m-%d %H:%M:%S"를 "%m월%d일 %H:%M:%S"로 수정하여 연도를 때어내고 형식을 바꾸었음.
     formatter = logging.Formatter('[%(asctime)s|%(levelname)s|%(funcName)s|%(lineno)d] %(message)s',"%m월%d일 %H:%M:%S")
